@@ -15,5 +15,3 @@ Basic.args = {
   title: 'Emerson',
   description: 'Gomes '
 }
-
-export const Default: Story = (args) => <Main {...args} />

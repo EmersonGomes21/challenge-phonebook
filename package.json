@@ -1,5 +1,5 @@
 {
-  "name": "react-avancado-boilerplate",
+  "name": "challenge-login-gavea",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
@@ -8,9 +8,7 @@
     "lint": "eslint src",
     "test": "jest",
     "test:watch": "yarn jest --watch",
-    "generate": "yarn plop --plopfile ./generators/plopfile.js",
-    "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "generate": "yarn plop --plopfile ./generators/plopfile.js"
   },
   "dependencies": {
     "next": "10.0.4",
@@ -23,8 +21,6 @@
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/preset-typescript": "^7.13.0",
-    "@storybook/addon-essentials": "^6.1.21",
-    "@storybook/react": "^6.1.21",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@types/jest": "^26.0.20",

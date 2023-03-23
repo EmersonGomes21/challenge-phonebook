@@ -13,8 +13,17 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/pop-teste/styled.js", "src/components/pop-teste/index.js", "src/components/pop-teste/jquery.js", "src/components/pop-teste/index.js"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/pop-teste/styled.js",
+    "src/components/pop-teste/index.js",
+    "src/components/pop-teste/jquery.js",
+    "src/components/pop-teste/index.js"
+  ]
 }

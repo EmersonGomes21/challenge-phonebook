@@ -2,8 +2,15 @@
 
 import axios, { AxiosRequestConfig } from 'axios'
 import { TYPES_ACTIONS } from 'contexts/PhoneBook'
+const isDev = process.env.NODE_ENV === 'development'
+const proxyForPassBlockRequestHTTPVERCEL =
+  'https://cors-anywhere.herokuapp.com/'
 
 const baseUrl = 'http://teste-frontend.saperx.com.br/api/schedule'
+
+const urlRequest = isDev
+  ? baseUrl
+  : `${baseUrl}${proxyForPassBlockRequestHTTPVERCEL}`
 
 interface IResolvedRequest {
   url?: string
@@ -12,7 +19,7 @@ interface IResolvedRequest {
 }
 
 export const resolvedRequest = async ({
-  url = baseUrl,
+  url = urlRequest,
   method = 'GET',
   data = {}
 }: IResolvedRequest = {}): Promise<AxiosRequestConfig> => {
@@ -46,7 +53,7 @@ export const createContact = async (data: ICreateContact) => {
 export const editContact = async (data: IResponseCreateContact) => {
   await resolvedRequest({
     method: 'PUT',
-    url: `${baseUrl}/${data.id}`,
+    url: `${urlRequest}/${data.id}`,
     data
   })
 }
@@ -54,7 +61,7 @@ export const editContact = async (data: IResponseCreateContact) => {
 export const deleteContact = async (id: number) => {
   await resolvedRequest({
     method: 'DELETE',
-    url: `${baseUrl}/${id}`
+    url: `${urlRequest}/${id}`
   })
 }
 
@@ -63,5 +70,5 @@ export const reFetchContacts = (dispatch: React.Dispatch<any>) => {
     dispatch({
       type: TYPES_ACTIONS.REFRESH_CONTACTS
     })
-  }, 2000)
+  }, 1000)
 }

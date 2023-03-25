@@ -3,14 +3,13 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { TYPES_ACTIONS } from 'contexts/PhoneBook'
 const isDev = process.env.NODE_ENV === 'development'
-const proxyForPassBlockRequestHTTPVERCEL =
-  'https://cors-anywhere.herokuapp.com/'
+const proxyForPassBlockRequestHTTPVERCEL = 'https://cors-anywhere.herokuapp.com'
 
 const baseUrl = 'http://teste-frontend.saperx.com.br/api/schedule'
 
 const urlRequest = isDev
   ? baseUrl
-  : `${baseUrl}${proxyForPassBlockRequestHTTPVERCEL}`
+  : `${proxyForPassBlockRequestHTTPVERCEL}/${baseUrl}`
 
 interface IResolvedRequest {
   url?: string

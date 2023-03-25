@@ -1,8 +1,7 @@
 
-![React Avançado](https://raw.githubusercontent.com/React-Avancado/boilerplate/master/public/img/logo-gh.svg)
+![SPX](https://cdn.cardume.digital/public/sites/saperx/favicons/favicon-32x32.png)
 
-This is a [Next.js](https://nextjs.org/) boilerplate to be used in a course called [React Avançado](https://reactavancado.com.br/).
-![ci](https://github.com/React-Avancado/boilerplate/workflows/ci/badge.svg)
+
 ## What is inside?
 
 This project uses lot of stuff as:
@@ -12,7 +11,6 @@ This project uses lot of stuff as:
 - [Styled Components](https://styled-components.com/)
 - [Jest](https://jestjs.io/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
-- [Storybook](https://storybook.js.org/)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)

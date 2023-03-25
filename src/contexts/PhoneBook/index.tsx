@@ -1,7 +1,7 @@
 import { isEmpty } from 'lodash'
 import React, { createContext, useContext, useReducer } from 'react'
 
-interface IContact {
+export interface IContact {
   name: string
   numbers: string[]
   email: string

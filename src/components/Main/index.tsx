@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FormCreateContact } from 'components/FormCreateContact'
-import { TYPES_ACTIONS, usePhoneBook } from 'contexts/PhoneBook'
+import { IContact, TYPES_ACTIONS, usePhoneBook } from 'contexts/PhoneBook'
 import {
   fetchContacts,
   deleteContact,
@@ -28,7 +28,7 @@ const Main = () => {
     })
   }, [dispatch, refresh])
 
-  const handlerEditContact = async (data: ICreateContact) => {
+  const handlerEditContact = async (data: IResponseCreateContact) => {
     await editContact(data)
   }
 
@@ -51,7 +51,7 @@ const Main = () => {
             </p>
           </div>
         </div>
-        <div className="row" style={{ width: '80%' }}>
+        <div className="row" style={{ width: '90%' }}>
           <div className="col-md-5" style={{ position: 'relative' }}>
             <ButtonAdd onClick={() => setContactSelected(null)} />
             <FormCreateContact
@@ -75,7 +75,7 @@ const Main = () => {
               </thead>
 
               <tbody>
-                {contacts.map((contact: IResponseCreateContact) => {
+                {contacts.map((contact: IContact) => {
                   const contactResolved = {
                     ...contact,
                     numbers: resolvedNumbers(contact.numbers)

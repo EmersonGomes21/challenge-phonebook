@@ -10,7 +10,11 @@ import {
 
 import * as S from './styles'
 import { ButtonAdd } from 'components/ButtonAdd'
-
+interface INumbers {
+  number: number
+  id: number
+  id_schedule: number
+}
 const Main = () => {
   const [contactSelected, setContactSelected] =
     useState<IResponseCreateContact | null>(null)
@@ -32,10 +36,10 @@ const Main = () => {
     await editContact(data)
   }
 
-  const resolvedNumbers = (numbers: string[] = []) => {
+  const resolvedNumbers = (numbers: INumbers[] = []) => {
     if (numbers.length === 0) return ''
 
-    return numbers.map((item) => item.number).join(', ')
+    return numbers.map((item: INumbers) => item.number).join(', ')
   }
 
   return (

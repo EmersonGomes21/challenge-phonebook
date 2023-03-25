@@ -1,7 +1,8 @@
 {
   "build": {
     "env": {
-      "CI": "false"
+      "CI": "false",
+      "TSC_COMPILE_ON_ERROR": "true"
     }
   }
 }

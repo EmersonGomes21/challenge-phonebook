@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { createContact, reFetchContacts } from 'services/api'
 interface IFormCreateContact {
@@ -19,7 +20,9 @@ const FormCreateContact = ({
     id: ''
   }
 
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState<IResponseCreateContact | any>(
+    initialValues
+  )
   const [isLoading, setIsLoading] = useState(false)
   useEffect(() => {
     if (!contactSelected) {

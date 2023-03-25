@@ -5,7 +5,7 @@ interface IButtonAdd {
 }
 const ButtonAdd = ({ onClick }: IButtonAdd) => (
   <S.Wrapper className="input-group-text" onClick={onClick}>
-    <i class="fas fa-user-plus"></i>
+    <i className="fas fa-user-plus"></i>
   </S.Wrapper>
 )
 

@@ -1,15 +1,14 @@
 import { render, screen } from '@testing-library/react'
 
-import Button from '.'
+import ButtonAdd from '.'
 
-describe('<Button/>', () => {
+describe('<ButtonAdd/>', () => {
   it('should render the heading', () => {
-    const { container } = render(<Button />)
+    const { container } = render(<ButtonAdd />)
     expect(
-      screen.getByRole('heading', { name: /Button/i })
+      screen.getByRole('heading', { name: /ButtonAdd/i })
     ).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
-
 })

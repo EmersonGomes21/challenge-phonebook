@@ -57,7 +57,7 @@ const FormCreateContact = ({
 
     setTimeout(() => {
       setIsLoading(false)
-    }, 2000)
+    }, 1000)
   }
   return (
     <form action="" autoComplete="off" onSubmit={handlerSubmit}>

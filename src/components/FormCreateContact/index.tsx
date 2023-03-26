@@ -45,11 +45,14 @@ const FormCreateContact = ({
   const isCreatedContact = !values.id
   const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
+
     event.preventDefault()
+
     const payload = {
       ...values,
       numbers: values.numbers.split(',')
     }
+
     const currentAction = isCreatedContact ? createContact : handlerEditContact
 
     currentAction(payload)
@@ -71,11 +74,12 @@ const FormCreateContact = ({
         <input
           type="text"
           className="form-control"
-          placeholder="Nome Completo"
+          placeholder="Nome"
           name="name"
           value={values.name}
           onChange={InputChange}
           required
+          data-testid="name"
         />
       </div>
 
@@ -157,6 +161,7 @@ const FormCreateContact = ({
 
       <div className="form-group">
         <input
+          data-testid="button-submit"
           type="submit"
           value={
             isLoading ? 'loading...' : isCreatedContact ? 'Salvar' : 'Atualizar'

@@ -6,7 +6,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>PhoneBook</title>
+        <title>SPX PhoneBook</title>
         <link
           rel="shortcut icon"
           href="https://cdn.cardume.digital/public/sites/saperx/favicons/favicon-32x32.png"

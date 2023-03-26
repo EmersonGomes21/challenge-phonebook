@@ -3,7 +3,8 @@ import { ButtonAdd } from '../index'
 
 describe('ButtonAdd component', () => {
   it('renders without crashing', () => {
-    const { getByTestId } = render(<ButtonAdd onClick={() => {}} />)
+    const onClick = jest.fn()
+    const { getByTestId } = render(<ButtonAdd onClick={onClick} />)
     const buttonAdd = getByTestId('button-add')
     expect(buttonAdd).toBeInTheDocument()
   })

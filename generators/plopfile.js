@@ -27,8 +27,8 @@ module.exports = function (plop) {
       },
       {
         type: 'add',
-        path: '../src/components/{{pascalCase name}}/test.tsx',
-        templateFile: 'templates/test.tsx.hbs'
+        path: '../src/components/{{pascalCase name}}/__tests__/index.test.tsx',
+        templateFile: 'templates/index.test.tsx.hbs'
       }
     ]
   })

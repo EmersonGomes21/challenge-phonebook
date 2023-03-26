@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import React, { useEffect } from 'react'
 import { FormCreateContact } from 'components/FormCreateContact'
 import { IContact, TYPES_ACTIONS, usePhoneBook } from 'contexts/PhoneBook'
@@ -5,7 +6,8 @@ import {
   fetchContacts,
   deleteContact,
   editContact,
-  reFetchContacts
+  reFetchContacts,
+  proxyForPassBlockRequestHTTPVERCEL
 } from 'services/api'
 
 import * as S from './styles'
@@ -22,12 +24,37 @@ const Main = () => {
   const { contacts, refresh, contactSelected } = state
 
   useEffect(() => {
-    fetchContacts().then((response) => {
-      dispatch({
-        type: TYPES_ACTIONS.FETCH_CONTACTS,
-        payload: response.data
+    var cors_api_host = 'cors-anywhere.herokuapp.com'
+    var cors_api_url = 'https://' + cors_api_host + '/'
+    var slice = [].slice
+    var origin = window.location.protocol + '//' + window.location.host
+    var open = XMLHttpRequest.prototype.open
+    XMLHttpRequest.prototype.open = function () {
+      var args = slice.call(arguments)
+      var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1])
+      if (
+        targetOrigin &&
+        targetOrigin[0].toLowerCase() !== origin &&
+        targetOrigin[1] !== cors_api_host
+      ) {
+        args[1] = cors_api_url + args[1]
+      }
+      return open.apply(this, args)
+    }
+
+    fetchContacts()
+      .then((response) => {
+        dispatch({
+          type: TYPES_ACTIONS.FETCH_CONTACTS,
+          payload: response.data
+        })
       })
-    })
+      .catch((error) => {
+        window.confirm(
+          'Você precisa de acesso ao serve de redirecionamento, confirme! '
+        )
+        window.location.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
+      })
   }, [dispatch, refresh])
 
   const handlerEditContact = async (data: IResponseCreateContact) => {

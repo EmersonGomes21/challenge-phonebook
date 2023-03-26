@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { FormCreateContact } from 'components/FormCreateContact'
 import { IContact, TYPES_ACTIONS, usePhoneBook } from 'contexts/PhoneBook'
 import {
@@ -10,18 +10,16 @@ import {
 
 import * as S from './styles'
 import { ButtonAdd } from 'components/ButtonAdd'
-interface INumbers {
+import { resolvedNumbers } from 'utils'
+export interface INumbers {
   number: number
   id: number
   id_schedule: number
 }
 const Main = () => {
-  const [contactSelected, setContactSelected] =
-    useState<IResponseCreateContact | null>(null)
-
   const { state, dispatch } = usePhoneBook()
 
-  const { contacts, refresh } = state
+  const { contacts, refresh, contactSelected } = state
 
   useEffect(() => {
     fetchContacts().then((response) => {
@@ -36,10 +34,8 @@ const Main = () => {
     await editContact(data)
   }
 
-  const resolvedNumbers = (numbers: INumbers[] = []) => {
-    if (numbers.length === 0) return ''
-
-    return numbers.map((item: INumbers) => item.number).join(', ')
+  const handlerSelectedContact = (data: IResponseCreateContact | null) => {
+    dispatch({ type: TYPES_ACTIONS.SELECT_CONTACT, payload: data })
   }
 
   return (
@@ -55,9 +51,9 @@ const Main = () => {
             </p>
           </div>
         </div>
-        <div className="row" style={{ width: '90%' }}>
+        <div className="row mt-4" style={{ width: '90%' }}>
           <div className="col-md-5" style={{ position: 'relative' }}>
-            <ButtonAdd onClick={() => setContactSelected(null)} />
+            <ButtonAdd onClick={() => handlerSelectedContact(null)} />
             <FormCreateContact
               handlerEditContact={handlerEditContact}
               contactSelected={contactSelected}
@@ -84,24 +80,29 @@ const Main = () => {
                     ...contact,
                     numbers: resolvedNumbers(contact.numbers)
                   }
+                  const { id, name, numbers, email, date_born, cpf } =
+                    contactResolved
                   return (
-                    <tr key={contactResolved.id}>
-                      <td>{contactResolved.name}</td>
-                      <td>{contactResolved.numbers}</td>
-                      <td>{contactResolved.email}</td>
-                      <td>{contactResolved.cpf}</td>
-                      <td>{contactResolved.date_born}</td>
+                    <tr key={id}>
+                      <td>{name}</td>
+                      <td>{numbers}</td>
+                      <td>{email}</td>
+                      <td>{cpf}</td>
+                      <td>{date_born}</td>
                       <td>
                         <a
+                          data-testid={`edit-contact-${id}`}
                           className="btn btn-primary "
-                          onClick={() => setContactSelected(contactResolved)}
+                          onClick={() =>
+                            handlerSelectedContact(contactResolved)
+                          }
                         >
                           <i className="fas fa-pencil-alt"></i>
                         </a>
                         <a
                           className="btn btn-danger ml-1"
                           onClick={async () => {
-                            await deleteContact(contactResolved.id)
+                            await deleteContact(id)
                             reFetchContacts(dispatch)
                           }}
                         >

@@ -4,9 +4,9 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { TYPES_ACTIONS } from 'contexts/PhoneBook'
 const isDev = process.env.NODE_ENV === 'development'
 const proxyForPassBlockRequestHTTPVERCEL = 'https://cors-anywhere.herokuapp.com'
-const baseUrl = 'http://teste-frontend.saperx.com.br/api/schedule'
+export const baseUrl = 'http://teste-frontend.saperx.com.br/api/schedule'
 
-const urlRequest = isDev
+export const urlRequest = isDev
   ? baseUrl
   : `${proxyForPassBlockRequestHTTPVERCEL}/${baseUrl}`
 
@@ -21,7 +21,6 @@ export const resolvedRequest = async ({
   method = 'GET',
   data = {}
 }: IResolvedRequest = {}): Promise<AxiosRequestConfig> => {
-  console.log({ data })
   const axiosConfig: AxiosRequestConfig<any> = {
     method,
     headers: {

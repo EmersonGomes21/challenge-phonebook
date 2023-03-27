@@ -1,4 +1,4 @@
-import { resolvedNumbers } from '../'
+import { getErrors, resolvedNumbers } from '../'
 
 describe('resolvedNumbers', () => {
   it('should return an empty string if numbers array is empty', () => {
@@ -16,5 +16,18 @@ describe('resolvedNumbers', () => {
     const numbers = [{ number: 1 }]
     const result = resolvedNumbers(numbers)
     expect(result).toEqual('1')
+  })
+})
+
+describe('getErrors function', () => {
+  it('should return default message Error "Error in request" when there are no errors', () => {
+    const result = getErrors()
+    expect(result).toEqual('Error in request')
+  })
+
+  it('should remove dots from error messages', () => {
+    const errors = { error1: 'Error message...', error2: 'Another error...' }
+    const result = getErrors(errors)
+    expect(result).toEqual('Error message, Another error')
   })
 })

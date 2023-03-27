@@ -2,6 +2,8 @@
 
 import axios, { AxiosRequestConfig } from 'axios'
 import { TYPES_ACTIONS } from 'contexts/PhoneBook'
+import { toast } from 'react-toastify'
+import { getErrors } from '../utils'
 const isDev = process.env.NODE_ENV === 'development'
 export const proxyForPassBlockRequestHTTPVERCEL =
   'https://cors-anywhere.herokuapp.com'
@@ -16,7 +18,10 @@ interface IResolvedRequest {
   method?: string
   data?: object
 }
-
+const defaultToastConfigs = {
+  position: toast.POSITION.TOP_CENTER,
+  autoClose: 5000
+}
 export const resolvedRequest = async ({
   url = urlRequest,
   method = 'GET',
@@ -32,9 +37,14 @@ export const resolvedRequest = async ({
   }
   try {
     const response = await axios(url, axiosConfig)
+    if (method.toLocaleUpperCase() !== 'GET') {
+      toast.success(response?.data?.message, defaultToastConfigs)
+    }
     return { ...response }
   } catch (error) {
-    throw new Error(`${error}`)
+    const errors = getErrors(error?.response?.data?.errors)
+    toast.error(errors, defaultToastConfigs)
+    return Promise.reject()
   }
 }
 

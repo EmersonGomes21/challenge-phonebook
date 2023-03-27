@@ -1,7 +1,10 @@
 import { PhoneBookProvider } from 'contexts/PhoneBook'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import GlobalStyles from 'styles/global'
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -25,6 +28,7 @@ function App({ Component, pageProps }: AppProps) {
       <GlobalStyles />
       <PhoneBookProvider>
         <Component {...pageProps} />
+        <ToastContainer />
       </PhoneBookProvider>
     </>
   )

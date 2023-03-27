@@ -1,4 +1,7 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { InputGroup } from 'components/InputGroup'
+import { InputField } from 'components/InputField'
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { createContact, reFetchContacts } from 'services/api'
 interface IFormCreateContact {
@@ -43,7 +46,7 @@ const FormCreateContact = ({
     })
   }
   const isCreatedContact = !values.id
-  const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
 
     event.preventDefault()
@@ -63,102 +66,65 @@ const FormCreateContact = ({
     }, 1000)
   }
   return (
-    <form action="" autoComplete="off" onSubmit={handlerSubmit}>
-      <div className="form-group input-group">
-        <div className="input-grou-prepend">
-          <div className="input-group-text text-larger">
-            <i className="fas fa-user"></i>
-          </div>
-        </div>
-
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Nome"
+    <form action="" autoComplete="off" onSubmit={handleSubmit}>
+      <InputGroup icon="fas fa-user">
+        <InputField
           name="name"
+          placeholder="Nome"
           value={values.name}
           onChange={InputChange}
-          required
-          data-testid="name"
+          dataTestId="name"
         />
-      </div>
+      </InputGroup>
 
       <div className="row">
         <div className="form-group input-group col-md-6">
-          <div className="input-grou-prepend">
-            <div className="input-group-text text-larger">
-              <i className="fas fa-mobile-alt"></i>
-            </div>
-          </div>
-
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Telefone"
-            name="numbers"
-            value={values?.numbers}
-            onChange={InputChange}
-            required
-          />
+          <InputGroup icon="fas fa-mobile-alt">
+            <InputField
+              name="numbers"
+              placeholder="Telefone"
+              value={values.numbers}
+              onChange={InputChange}
+            />
+          </InputGroup>
         </div>
 
         <div className="form-group input-group col-md-6">
-          <div className="input-grou-prepend">
-            <div className="input-group-text text-larger">
-              <i className="fas fa-envelope"></i>
-            </div>
-          </div>
-
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Seu melhor email"
-            name="email"
-            value={values.email}
-            onChange={InputChange}
-            required
-          />
+          <InputGroup icon="fas fa-envelope">
+            <InputField
+              type="email"
+              name="email"
+              placeholder="Seu melhor email"
+              value={values.email}
+              onChange={InputChange}
+            />
+          </InputGroup>
         </div>
       </div>
 
       <div className="row">
         <div className="form-group input-group col-md-6">
-          <div className="input-grou-prepend">
-            <div className="input-group-text text-larger">
-              <i className="fas  fa-id-badge"></i>
-            </div>
-          </div>
-
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Cpf"
-            name="cpf"
-            value={values.cpf}
-            onChange={InputChange}
-            required
-          />
+          <InputGroup icon="fas fa-id-badge">
+            <InputField
+              name="cpf"
+              placeholder="Cpf"
+              value={values.cpf}
+              onChange={InputChange}
+            />
+          </InputGroup>
         </div>
 
         <div className="form-group input-group col-md-6">
-          <div className="input-grou-prepend">
-            <div className="input-group-text text-larger">
-              <i className="fas fa-calendar"></i>
-            </div>
-          </div>
-
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Nasc.. YYYY-mm-dd"
-            name="date_born"
-            value={values.date_born}
-            onChange={InputChange}
-            required
-          />
+          <InputGroup icon="fas fa-calendar">
+            <InputField
+              placeholder="Nasc.. YYYY-mm-dd"
+              name="date_born"
+              value={values.date_born}
+              onChange={InputChange}
+            />
+          </InputGroup>
         </div>
       </div>
-
       <div className="form-group">
         <input
           data-testid="button-submit"

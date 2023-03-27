@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import React, { useEffect } from 'react'
 import { FormCreateContact } from 'components/FormCreateContact'
 import { IContact, TYPES_ACTIONS, usePhoneBook } from 'contexts/PhoneBook'
@@ -10,7 +11,7 @@ import {
 
 import * as S from './styles'
 import { ButtonAdd } from 'components/ButtonAdd'
-import { resolvedNumbers } from 'utils'
+import { resolvedNumbers } from '../../utils'
 export interface INumbers {
   number: number
   id: number

@@ -1,6 +1,6 @@
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import { FormCreateContact } from '../'
-import { urlRequest } from 'services/api'
+import { baseUrl, urlRequest } from 'services/api'
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 import { contactsMock } from '../../../../mocks/contacts.mock'
@@ -61,6 +61,7 @@ describe('FormCreateContact', () => {
         dispatch={mockDispatch}
       />
     )
+    mockRequest.onPost(baseUrl).reply(200, contactsMock)
     mockRequest.onPost(urlRequest).reply(200, contactsMock)
 
     const buttonSubmit = screen.getByTestId('button-submit')

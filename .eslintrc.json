@@ -33,6 +33,6 @@
     "react/prop-types": "off", //Para não ter conflito do typescript
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }

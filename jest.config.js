@@ -15,7 +15,10 @@ module.exports = createJestConfig({
     '!**/*_app.tsx',
     '!**/*_document.tsx',
     '!**/node_modules/**',
-    '!**/.next/**'
+    '!**/.next/**',
+    '!**/*styles.ts',
+    '!**/*styled.ts',
+    '!**/*global.ts'
   ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
   moduleNameMapper: {

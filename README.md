@@ -1,6 +1,6 @@
 
 ![SPX](https://cdn.cardume.digital/public/sites/saperx/favicons/favicon-32x32.png)
-
+### In order to be able to use the version published by Vercel, it is mandatory to temporarily unblock the proxy responsible for redirecting http requests to https <[here](https://cors-anywhere.herokuapp.com/corsdemo)>.
 ## [DEPLOYED IN VERCEL](https://challenge-phonebook.vercel.app/)
 ## What is inside?
 

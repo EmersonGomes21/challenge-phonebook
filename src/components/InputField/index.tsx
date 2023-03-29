@@ -1,6 +1,6 @@
-import React from 'react'
-
-type InputFieldProps = {
+import React, { InputHTMLAttributes } from 'react'
+import InputMask from 'react-input-mask'
+interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string
   name: string
   placeholder?: string
@@ -8,8 +8,10 @@ type InputFieldProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   required?: boolean
   dataTestId?: string
+  className?: string
+  mask?: string | (string | RegExp)[]
+  maskChar?: string
 }
-
 export const InputField: React.FC<InputFieldProps> = (props) => {
   const {
     type = 'text',
@@ -18,10 +20,16 @@ export const InputField: React.FC<InputFieldProps> = (props) => {
     value,
     onChange,
     required = true,
-    dataTestId
+    dataTestId = props.name,
+    className = '',
+    mask = '',
+    maskChar = ''
   } = props
   return (
-    <input
+    <InputMask
+      {...props}
+      maskChar={maskChar}
+      mask={mask}
       type={type}
       name={name}
       placeholder={placeholder}
@@ -29,7 +37,7 @@ export const InputField: React.FC<InputFieldProps> = (props) => {
       onChange={onChange}
       required={required}
       data-testid={dataTestId}
-      className="form-control"
+      className={`form-control ${className}`}
     />
   )
 }

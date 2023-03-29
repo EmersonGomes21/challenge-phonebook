@@ -123,7 +123,7 @@ const FormCreateContact = ({
               placeholder="Cpf"
               value={values.cpf}
               onChange={InputChange}
-              className={isValidCpf ? '' : 'is-invalid'}
+              className={isValidCpf || values.cpf === '' ? '' : 'is-invalid'}
             />
             <div
               id="error-msg"

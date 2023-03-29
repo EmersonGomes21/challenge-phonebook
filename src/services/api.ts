@@ -27,6 +27,7 @@ export const resolvedRequest = async ({
   method = 'GET',
   data = {}
 }: IResolvedRequest = {}): Promise<AxiosRequestConfig> => {
+  console.log(data)
   const axiosConfig: AxiosRequestConfig<any> = {
     method,
     headers: {
